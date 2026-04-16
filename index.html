@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Gerador de Link</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 30px;
+        }
+        input, button {
+            padding: 10px;
+            font-size: 16px;
+        }
+        a {
+            display: block;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Gerar Link de Nota de Serviço</h2>
+
+    <input type="text" id="numero" placeholder="Digite o número">
+    <button onclick="gerarLink()">Gerar Link</button>
+
+    <a id="linkGerado" href="#" target="_blank"></a>
+
+    <script>
+        function gerarLink() {
+            let numero = document.getElementById("numero").value;
+
+            if (numero === "") {
+                alert("Digite um número!");
+                return;
+            }
+
+            let link = "http://192.168.1.110/contratadaweb/consultas/historico/notaservico_detalhe.jsp?NumServ=" 
+                        + numero + "&QTE=1";
+
+            let elementoLink = document.getElementById("linkGerado");
+            elementoLink.href = link;
+            elementoLink.textContent = link;
+        }
+    </script>
+
+</body>
+</html>
