@@ -3,33 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <title>NOTAS DE SERVIÇO</title>
+
+    <!-- ÍCONE DA ABA -->
+    <link rel="icon" type="image/png" href="Imagem1.PNG">
+
     <style>
+        :root {
+            --bg: #ffffff;
+            --text: #000000;
+            --box: #f0f0f0;
+        }
+
+        body.dark {
+            --bg: #121212;
+            --text: #ffffff;
+            --box: #1e1e1e;
+        }
+
         body {
             font-family: Arial, sans-serif;
             padding: 30px;
+            background-color: var(--bg);
+            color: var(--text);
+            transition: 0.3s;
         }
+
+        .container {
+            background: var(--box);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
         input, button {
             padding: 10px;
             font-size: 16px;
+            margin-top: 10px;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        .topo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .topo img {
+            max-width: 200px;
+            display: block;
+            margin: 0 auto 10px;
+        }
+
+        .toggle {
+            position: fixed;
+            top: 10px;
+            right: 10px;
         }
     </style>
 </head>
+
 <body>
-        <div>
-            <h2>Acessar NSIS </h2>
 
-                <input type="text" id="numero" placeholder="Digite o número">
-                <button onclick="acessar_nsis()">Acessar</button>
-        </div>
-    <div>
-            <h2>Acessar NSRI </h2>
+    <!-- BOTÃO MODO ESCURO -->
+    <button class="toggle" onclick="toggleDark()">🌙 / ☀️</button>
 
-                <input type="text" id="numero" placeholder="Digite o número">
-                <button onclick="acessar_nsri()">Acessar</button>
-        </div>
+    <!-- TOPO COM IMAGEM -->
+    <div class="topo">
+        <img src="Imagem1.PNG" alt="Logo">
+        <h1>NOTAS DE SERVIÇO</h1>
+    </div>
+
+    <div class="container">
+        <h2>Acessar NSIS</h2>
+        <input type="text" id="numero_nsis" placeholder="Digite o número">
+        <br>
+        <button onclick="acessar_nsis()">Acessar</button>
+    </div>
+
+    <div class="container">
+        <h2>Acessar NSRI</h2>
+        <input type="text" id="numero_nsri" placeholder="Digite o número">
+        <br>
+        <button onclick="acessar_nsri()">Acessar</button>
+    </div>
+
     <script>
         function acessar_nsis() {
-            let numero = document.getElementById("numero").value;
+            let numero = document.getElementById("numero_nsis").value;
 
             if (numero === "") {
                 alert("Digite um número!");
@@ -39,14 +101,11 @@
             let link = "http://192.168.1.110/contratadaweb/consultas/at_servicos/notaservico_detalhe.jsp?PagOrigem=Gerencia&NumServ=" 
                         + numero + "&QTE=1";
 
-           // ABRE EM NOVA ABA
             window.open(link, "_blank");
-
-            // Se quiser abrir em nova aba, use:
-            // window.open(link, "_blank");
         }
-         function acessar_nsri() {
-            let numero = document.getElementById("numero").value;
+
+        function acessar_nsri() {
+            let numero = document.getElementById("numero_nsri").value;
 
             if (numero === "") {
                 alert("Digite um número!");
@@ -56,15 +115,13 @@
             let link = "http://192.168.1.110/contratadaweb/consultas/at_servicos/notaservico_detalhe.jsp?PagOrigem=Gerencia&NumServ=" 
                         + numero + "&QTE=1";
 
-           // ABRE EM NOVA ABA
             window.open(link, "_blank");
+        }
 
-            // Se quiser abrir em nova aba, use:
-            // window.open(link, "_blank");
+        function toggleDark() {
+            document.body.classList.toggle("dark");
         }
     </script>
-        
-  
-    
+
 </body>
 </html>
