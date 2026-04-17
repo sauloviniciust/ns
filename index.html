@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>NOTAS DE SERVIÇO</title>
 
-    <!-- ÍCONE DA ABA -->
     <link rel="icon" type="image/png" href="Imagem1.png">
 
     <style>
@@ -66,84 +65,78 @@
 
 <body>
 
-    <!-- BOTÃO MODO ESCURO -->
-    <button class="toggle" onclick="toggleDark()">🌙 / ☀️</button>
+<button class="toggle" onclick="toggleDark()">🌙 / ☀️</button>
 
-    <!-- TOPO COM IMAGEM -->
-    <div class="topo">
-        <img src="Imagem1.png" alt="Logo">
-        <h1>NOTAS DE SERVIÇO</h1>
-    </div>
+<div class="topo">
+    <img src="Imagem1.png" alt="Logo">
+    <h1>NOTAS DE SERVIÇO</h1>
+</div>
 
-    <div class="container">
-        <h2>Acessar NSIS</h2>
-        <input type="text" id="nsis" placeholder="Digite o número">
-        <br>
-        <button onclick="nsis()">Acessar</button>
-    </div>
+<div class="container">
+    <h2>Acessar NSIS</h2>
+    <input type="text" id="nsis" placeholder="Digite o número">
+    <br>
+    <button onclick="acessar_nsis()">Acessar</button>
+</div>
 
-    <div class="container">
-        <h2>Acessar NSRI</h2>
-        <input type="text" id="nsri" placeholder="Digite o número">
-        <br>
-        <button onclick="nsri()">Acessar</button>
-    </div>
- <div class="container">
-        <h2>Acessar NSPR</h2>
-        <input type="text" id="nspr" placeholder="Digite o número">
-        <br>
-        <button onclick="nspr()">Acessar</button>
-    </div>
-    <script>
-        function acessar_nsis() {
-            let nsis = document.getElementById("nsis").value;
+<div class="container">
+    <h2>Acessar NSRI</h2>
+    <input type="text" id="nsri" placeholder="Digite o número">
+    <br>
+    <button onclick="acessar_nsri()">Acessar</button>
+</div>
 
-            if (nsis === "") {
-                alert("Digite um número!");
-                return;
-            }
+<div class="container">
+    <h2>Acessar NSPR</h2>
+    <input type="text" id="nspr" placeholder="Digite o número">
+    <br>
+    <button onclick="acessar_nspr()">Acessar</button>
+</div>
 
-            let link = "http://192.168.1.110/contratadaweb/consultas/at_servicos/notaservico_detalhe.jsp?PagOrigem=Gerencia&NumServ=" 
-                        + nsis + "&QTE=1";
+<script>
+function acessar_nsis() {
+    let nsis = document.getElementById("nsis").value;
 
-            window.open(link, "_blank");
-        }
+    if (nsis === "") {
+        alert("Digite um número!");
+        return;
+    }
 
-        function acessar_nsri() {
-            let nsri = document.getElementById("nsri").value;
+    let link = "http://192.168.1.110/contratadaweb/consultas/at_servicos/notaservico_detalhe.jsp?PagOrigem=Gerencia&NumServ=" + nsis + "&QTE=1";
 
-            if (nsri === "") {
-                alert("Digite um número!");
-                return;
-            }
+    window.open(link, "_blank");
+}
 
-            let link = "http://192.168.1.110/contratadaweb/consultas/at_servicos/notaservico_detalhe.jsp?PagOrigem=Gerencia&NumServ=" 
-                        + nsri + "&QTE=1";
+function acessar_nsri() {
+    let nsri = document.getElementById("nsri").value;
 
-            window.open(link, "_blank");
-        }
+    if (nsri === "") {
+        alert("Digite um número!");
+        return;
+    }
 
-        function toggleDark() {
-            document.body.classList.toggle("dark");
-        }
-         function acessar_nspr() {
-            let nsri = document.getElementById("nspr").value;
+    let link = "http://192.168.1.110/contratadaweb/consultas/at_servicos/notaservico_detalhe.jsp?PagOrigem=Gerencia&NumServ=" + nsri + "&QTE=1";
 
-            if (nspr === "") {
-                alert("Digite um número!");
-                return;
-            }
+    window.open(link, "_blank");
+}
 
-            let link = "http://192.168.1.110/contratadaweb/consultas/at_servicos/notaservico_detalhe.jsp?PagOrigem=Gerencia&NumServ=" 
-                        + nspr + "&QTE=1";
+function acessar_nspr() {
+    let nspr = document.getElementById("nspr").value;
 
-            window.open(link, "_blank");
-        }
+    if (nspr === "") {
+        alert("Digite um número!");
+        return;
+    }
 
-        function toggleDark() {
-            document.body.classList.toggle("dark");
-        }
-    </script>
+    let link = "http://192.168.1.110/contratadaweb/consultas/at_servicos/notaservico_detalhe.jsp?PagOrigem=Gerencia&NumServ=" + nspr + "&QTE=1";
+
+    window.open(link, "_blank");
+}
+
+function toggleDark() {
+    document.body.classList.toggle("dark");
+}
+</script>
 
 </body>
 </html>
