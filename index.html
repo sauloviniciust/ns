@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Gerador de Link</title>
+    <title>NORAS DE SERVIÇO</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -15,12 +15,12 @@
     </style>
 </head>
 <body>
+        <div>
+            <h2>Acessar NSRI </h2>
 
-    <h2>Acessar Nota de Serviço</h2>
-
-    <input type="text" id="numero" placeholder="Digite o número">
-    <button onclick="acessar()">Acessar</button>
-
+                <input type="text" id="numero" placeholder="Digite o número">
+                <button onclick="acessar()">Acessar</button>
+        
     <script>
         function acessar() {
             let numero = document.getElementById("numero").value;
@@ -40,6 +40,33 @@
             // window.open(link, "_blank");
         }
     </script>
+        </div>
 
+    <div>
+            <h2>Acessar NSIS </h2>
+
+                <input type="text" id="numero" placeholder="Digite o número">
+                <button onclick="acessar()">Acessar</button>
+        
+    <script>
+        function acessar() {
+            let numero = document.getElementById("numero").value;
+
+            if (numero === "") {
+                alert("Digite um número!");
+                return;
+            }
+
+            let link = "http://192.168.1.110/contratadaweb/consultas/at_servicos/notaservico_detalhe.jsp?PagOrigem=Gerencia&NumServ=" 
+                        + numero + "&QTE=1";
+
+           // ABRE EM NOVA ABA
+            window.open(link, "_blank");
+
+            // Se quiser abrir em nova aba, use:
+            // window.open(link, "_blank");
+        }
+    </script>
+        </div>
 </body>
 </html>
