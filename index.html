@@ -16,13 +16,36 @@
 </head>
 <body>
         <div>
+            <h2>Acessar NSIS </h2>
+
+                <input type="text" id="numero" placeholder="Digite o número">
+                <button onclick="acessar_nsis()">Acessar</button>
+        </div>
+    <div>
             <h2>Acessar NSRI </h2>
 
                 <input type="text" id="numero" placeholder="Digite o número">
-                <button onclick="acessar()">Acessar</button>
-        
+                <button onclick="acessar_nsri()">Acessar</button>
+        </div>
     <script>
-        function acessar() {
+        function acessar_nsis() {
+            let numero = document.getElementById("numero").value;
+
+            if (numero === "") {
+                alert("Digite um número!");
+                return;
+            }
+
+            let link = "http://192.168.1.110/contratadaweb/consultas/at_servicos/notaservico_detalhe.jsp?PagOrigem=Gerencia&NumServ=" 
+                        + numero + "&QTE=1";
+
+           // ABRE EM NOVA ABA
+            window.open(link, "_blank");
+
+            // Se quiser abrir em nova aba, use:
+            // window.open(link, "_blank");
+        }
+         function acessar_nsri() {
             let numero = document.getElementById("numero").value;
 
             if (numero === "") {
@@ -40,7 +63,7 @@
             // window.open(link, "_blank");
         }
     </script>
-        </div>
+        
   
     
 </body>
