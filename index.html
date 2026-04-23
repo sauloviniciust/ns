@@ -1,66 +1,77 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>NOTAS DE SERVIÇO</title>
+<meta charset="UTF-8">
+<title>NOTAS DE SERVIÇO</title>
 
-    <link rel="icon" type="image/png" href="Imagem1.png">
+<link rel="icon" type="image/png" href="Imagem1.png">
 
-    <style>
-        :root {
-            --bg: #121212;
-            --text: #ffffff;
-            --box: #1e1e1e;
-        }
+<style>
+:root {
+    --bg: #121212;
+    --text: #ffffff;
+    --box: #1e1e1e;
+}
 
-        body.dark {
-            --bg: #ffffff;
-            --text: #000000;
-            --box: #f0f0f0;
-        }
+body.dark {
+    --bg: #ffffff;
+    --text: #000000;
+    --box: #f0f0f0;
+}
 
-        body {
-            font-family: Arial, sans-serif;
-            padding: 30px;
-            background-color: var(--bg);
-            color: var(--text);
-            transition: 0.3s;
-        }
+body {
+    font-family: Arial, sans-serif;
+    padding: 30px;
+    background-color: var(--bg);
+    color: var(--text);
+    transition: 0.3s;
+}
 
-        .container {
-            background: var(--box);
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
+.container {
+    background: var(--box);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
 
-        input, button {
-            padding: 10px;
-            font-size: 16px;
-            margin-top: 10px;
-        }
+textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    margin-top: 10px;
+    resize: vertical;
+}
 
-        button {
-            cursor: pointer;
-        }
+button {
+    padding: 10px;
+    font-size: 14px;
+    margin-top: 10px;
+    cursor: pointer;
+}
 
-        .topo {
-            text-align: center;
-            margin-bottom: 30px;
-        }
+.topo {
+    text-align: center;
+    margin-bottom: 30px;
+}
 
-        .topo img {
-            max-width: 200px;
-            display: block;
-            margin: 0 auto 10px;
-        }
+.topo img {
+    max-width: 200px;
+    display: block;
+    margin: 0 auto 10px;
+}
 
-        .toggle {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-        }
-    </style>
+.toggle {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+}
+
+.info {
+    margin-top: 10px;
+    font-size: 14px;
+    opacity: 0.8;
+}
+</style>
 </head>
 
 <body>
@@ -68,77 +79,114 @@
 <button class="toggle" onclick="toggleDark()">🌙 / ☀️</button>
 
 <div class="topo">
-    <img src="Imagem1.png" alt="Logo">
+    <img src="Imagem1.png">
     <h1>NOTAS DE SERVIÇO</h1>
 </div>
 
+<!-- BLOCO -->
 <div class="container">
-    <h2>Acessar NSIS</h2>
-    <input type="text" id="nsis" placeholder="Digite o número">
+    <h2>NSIS</h2>
+    <textarea id="nsis" rows="4" placeholder="Cole vários códigos aqui"></textarea>
     <br>
-    <button onclick="acessar_nsis()">Acessar</button>
+    <button onclick="colar('nsis')">📋 Colar</button>
+    <button onclick="acessar('nsis','nsis')">Acessar</button>
+    <div class="info" id="info-nsis"></div>
 </div>
 
 <div class="container">
-    <h2>Acessar NSRI</h2>
-    <input type="text" id="nsri" placeholder="Digite o número">
+    <h2>NSRI</h2>
+    <textarea id="nsri" rows="4"></textarea>
     <br>
-    <button onclick="acessar_nsri()">Acessar</button>
+    <button onclick="colar('nsri')">📋 Colar</button>
+    <button onclick="acessar('nsri','nsri')">Acessar</button>
+    <div class="info" id="info-nsri"></div>
 </div>
 
 <div class="container">
-    <h2>Acessar NSPR</h2>
-    <input type="text" id="nspr" placeholder="Digite o número">
+    <h2>NSPR</h2>
+    <textarea id="nspr" rows="4"></textarea>
     <br>
-    <button onclick="acessar_nspr()">Acessar</button>
+    <button onclick="colar('nspr')">📋 Colar</button>
+    <button onclick="acessar('nspr','nspr')">Acessar</button>
+    <div class="info" id="info-nspr"></div>
 </div>
 
 <script>
-function acessar_nsis() {
-    let nsis = document.getElementById("nsis").value;
 
-    if (nsis === "") {
-        alert("Digite um número!");
+// separar lista
+function processarLista(valor) {
+    return [...new Set(
+        valor
+        .split(/[\n,; ]+/)
+        .map(v => v.trim())
+        .filter(v => v !== "")
+    )];
+}
+
+// colar automático
+async function colar(id) {
+    try {
+        const texto = await navigator.clipboard.readText();
+        document.getElementById(id).value = texto;
+        atualizarInfo(id);
+    } catch {
+        alert("Não foi possível acessar a área de transferência");
+    }
+}
+
+// atualizar contador
+function atualizarInfo(id) {
+    let valor = document.getElementById(id).value;
+    let lista = processarLista(valor);
+    document.getElementById("info-" + id).innerText =
+        "Total: " + lista.length + " código(s)";
+}
+
+// abrir links
+function acessar(id, tipo) {
+    let valor = document.getElementById(id).value;
+
+    if (valor.trim() === "") {
+        alert("Digite pelo menos um número!");
         return;
     }
 
-    let link = "http://192.168.1.110/contratadaweb/consultas/at_servicos/notaservico_detalhe.jsp?Gerencia&NumServ=" + nsis + "&QTE=1";
+    let lista = processarLista(valor);
 
-    window.open(link, "_blank");
+    lista.forEach(codigo => {
+        let link = "";
+
+        if (tipo === "nsis") {
+            link = "http://192.168.1.110/contratadaweb/consultas/at_servicos/notaservico_detalhe.jsp?Gerencia&NumServ=" + codigo + "&QTE=1";
+        }
+
+        if (tipo === "nsri") {
+            link = "http://192.168.1.110/contratadaweb/consultas/historico/notaservico_detalhe.jsp?NumServ=" + codigo + "&QTE=1";
+        }
+
+        if (tipo === "nspr") {
+            link = "http://192.168.1.110/contratadaweb/condis/concod/manutencao/relatorio_nspr.jsp?idnsmanut=" + codigo + "&tipoRel=D";
+        }
+
+        window.open(link, "_blank");
+    });
+
+    document.getElementById("info-" + id).innerText =
+        "✔ " + lista.length + " link(s) aberto(s)";
+
+    document.getElementById(id).value = "";
 }
 
-function acessar_nsri() {
-    let nsri = document.getElementById("nsri").value;
-
-    if (nsri === "") {
-        alert("Digite um número!");
-        return;
-    }
-
-    let link = "http://192.168.1.110/contratadaweb/consultas/historico/notaservico_detalhe.jsp?NumServ=" + nsri + "&QTE=1";
-
-    window.open(link, "_blank");
-}
-
-function acessar_nspr() {
-    let nspr = document.getElementById("nspr").value;
-
-    if (nspr === "") {
-        alert("Digite um número!");
-        return;
-    }
-
-    let link = "http://192.168.1.110/contratadaweb/condis/concod/manutencao/relatorio_nspr.jsp?idnsmanut=" + nspr + "&tipoRel=D
-}" ;
-
-    window.open(link, "_blank");
-
-    //gdis.cemig.com.br/contratadaweb/condis/concod/manutencao/relatorio_nspr.jsp?idnsmanut=59792926&tipoRel=D
-}
-
+// dark mode
 function toggleDark() {
     document.body.classList.toggle("dark");
 }
+
+// atualizar contador ao digitar
+document.querySelectorAll("textarea").forEach(el => {
+    el.addEventListener("input", () => atualizarInfo(el.id));
+});
+
 </script>
 
 </body>
