@@ -1,193 +1,705 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>NOTAS DE SERVIÇO</title>
 
-<link rel="icon" type="image/png" href="Imagem1.png">
+<link rel="icon" type="image/png" href="Imagem1.png" />
 
 <style>
 :root {
-    --bg: #121212;
-    --text: #ffffff;
-    --box: #1e1e1e;
+    --bg: #0f172a;
+    --bg2: #111827;
+    --card: rgba(30, 41, 59, 0.92);
+    --card2: rgba(15, 23, 42, 0.95);
+    --text: #f8fafc;
+    --muted: #94a3b8;
+    --border: rgba(148, 163, 184, 0.25);
+    --primary: #38bdf8;
+    --primary2: #0284c7;
+    --success: #22c55e;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --input: #020617;
 }
 
-body.dark {
-    --bg: #ffffff;
-    --text: #000000;
-    --box: #f0f0f0;
+body.light {
+    --bg: #e2e8f0;
+    --bg2: #f8fafc;
+    --card: rgba(255, 255, 255, 0.95);
+    --card2: #ffffff;
+    --text: #0f172a;
+    --muted: #475569;
+    --border: rgba(15, 23, 42, 0.15);
+    --primary: #0284c7;
+    --primary2: #0369a1;
+    --input: #f8fafc;
+}
+
+* {
+    box-sizing: border-box;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    padding: 30px;
-    background-color: var(--bg);
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    background:
+        radial-gradient(circle at top left, rgba(56, 189, 248, 0.20), transparent 35%),
+        linear-gradient(135deg, var(--bg), var(--bg2));
     color: var(--text);
-    transition: 0.3s;
+    transition: 0.25s ease;
 }
 
-.container {
-    background: var(--box);
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
+.wrapper {
+    width: min(1200px, calc(100% - 32px));
+    margin: auto;
+    padding: 24px 0 40px;
+}
+
+.header {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 18px;
+    align-items: center;
+    margin-bottom: 22px;
+}
+
+.logo {
+    width: 82px;
+    height: 82px;
+    object-fit: contain;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    padding: 8px;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: clamp(28px, 4vw, 44px);
+    letter-spacing: 1px;
+}
+
+.header p {
+    margin: 6px 0 0;
+    color: var(--muted);
+}
+
+.actions-top {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+button, select, input, textarea {
+    font: inherit;
+}
+
+button, select {
+    border: 0;
+    border-radius: 12px;
+    padding: 11px 14px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button {
+    background: var(--primary);
+    color: #00111f;
+    font-weight: 700;
+}
+
+button:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.05);
+}
+
+button.secondary {
+    background: var(--card);
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+
+button.danger {
+    background: var(--danger);
+    color: white;
+}
+
+button.success {
+    background: var(--success);
+    color: #052e16;
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+.metric {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 16px;
+}
+
+.metric span {
+    display: block;
+    color: var(--muted);
+    font-size: 13px;
+    margin-bottom: 6px;
+}
+
+.metric strong {
+    font-size: 28px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    padding: 18px;
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.16);
+}
+
+.card h2 {
+    margin: 0 0 4px;
+    font-size: 24px;
+}
+
+.card small {
+    color: var(--muted);
 }
 
 textarea {
     width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    margin-top: 10px;
+    min-height: 155px;
+    margin-top: 14px;
+    padding: 14px;
     resize: vertical;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    outline: none;
+    background: var(--input);
+    color: var(--text);
+    line-height: 1.5;
 }
 
-button {
-    padding: 10px;
-    font-size: 14px;
+textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.18);
+}
+
+.btn-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
     margin-top: 10px;
-    cursor: pointer;
-}
-
-.topo {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.topo img {
-    max-width: 200px;
-    display: block;
-    margin: 0 auto 10px;
-}
-
-.toggle {
-    position: fixed;
-    top: 10px;
-    right: 10px;
 }
 
 .info {
-    margin-top: 10px;
-    font-size: 14px;
-    opacity: 0.8;
+    margin-top: 12px;
+    padding: 11px 12px;
+    border-radius: 14px;
+    background: var(--card2);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    min-height: 42px;
+}
+
+.panel {
+    margin-top: 18px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    padding: 18px;
+}
+
+.panel h2 {
+    margin-top: 0;
+}
+
+.preview-list {
+    display: grid;
+    gap: 8px;
+    max-height: 260px;
+    overflow: auto;
+}
+
+.preview-item {
+    display: grid;
+    grid-template-columns: 90px 1fr auto;
+    gap: 10px;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--card2);
+}
+
+.badge {
+    display: inline-flex;
+    justify-content: center;
+    border-radius: 999px;
+    padding: 5px 9px;
+    background: rgba(56, 189, 248, 0.16);
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 12px;
+}
+
+.link-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--muted);
+}
+
+.history-list {
+    display: grid;
+    gap: 8px;
+}
+
+.history-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--card2);
+}
+
+.toast {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    background: #020617;
+    color: white;
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 14px 16px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;
+    transition: 0.25s;
+    z-index: 20;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 950px) {
+    .grid, .dashboard {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 650px) {
+    .header {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .logo {
+        margin: auto;
+    }
+
+    .actions-top {
+        justify-content: center;
+    }
+
+    .grid, .dashboard {
+        grid-template-columns: 1fr;
+    }
+
+    .preview-item {
+        grid-template-columns: 1fr;
+    }
 }
 </style>
 </head>
 
 <body>
+<div class="wrapper">
+    <header class="header">
+        <img class="logo" src="Imagem1.png" alt="Logo" />
+        <div>
+            <h1>NOTAS DE SERVIÇO</h1>
+            <p>Acesso rápido para NSIS, NSRI e NSPR com colagem em massa, prévia e histórico.</p>
+        </div>
+        <div class="actions-top">
+            <button class="secondary" onclick="alternarTema()">🌙 / ☀️</button>
+            <button class="secondary" onclick="limparTudo()">🧹 Limpar tudo</button>
+        </div>
+    </header>
 
-<button class="toggle" onclick="toggleDark()">🌙 / ☀️</button>
+    <section class="dashboard">
+        <div class="metric"><span>Total digitado</span><strong id="m-total">0</strong></div>
+        <div class="metric"><span>Duplicados removidos</span><strong id="m-duplicados">0</strong></div>
+        <div class="metric"><span>Links preparados</span><strong id="m-links">0</strong></div>
+        <div class="metric"><span>Histórico</span><strong id="m-historico">0</strong></div>
+    </section>
 
-<div class="topo">
-    <img src="Imagem1.png">
-    <h1>NOTAS DE SERVIÇO</h1>
+    <main class="grid">
+        <section class="card">
+            <h2>MANOBRAS</h2>
+            <small>Pesquisa de manobras operacionais</small>
+            <textarea id="manobra" placeholder="Cole os números de manobra aqui"></textarea>
+            <div class="btn-row">
+                <button onclick="colar('manobra')">📋 Colar</button>
+                <button class="success" onclick="acessar('manobra')">⚡ Abrir</button>
+                <button class="secondary" onclick="copiarLinks('manobra')">🔗 Copiar links</button>
+                <button class="danger" onclick="limparCampo('manobra')">Limpar</button>
+            </div>
+            <div class="info" id="info-manobra">Total: 0 código(s)</div>
+        </section>
+        <section class="card">
+            <h2>NSIS</h2>
+            <small>Serviços em andamento</small>
+            <textarea id="nsis" placeholder="Cole os códigos NSIS aqui. Ex: 123456 123457 123458"></textarea>
+            <div class="btn-row">
+                <button onclick="colar('nsis')">📋 Colar</button>
+                <button class="success" onclick="acessar('nsis')">🚀 Acessar</button>
+                <button class="secondary" onclick="copiarLinks('nsis')">🔗 Copiar links</button>
+                <button class="danger" onclick="limparCampo('nsis')">Limpar</button>
+            </div>
+            <div class="info" id="info-nsis">Total: 0 código(s)</div>
+        </section>
+
+        <section class="card">
+            <h2>NSRI</h2>
+            <small>Histórico de notas</small>
+            <textarea id="nsri" placeholder="Cole os códigos NSRI aqui"></textarea>
+            <div class="btn-row">
+                <button onclick="colar('nsri')">📋 Colar</button>
+                <button class="success" onclick="acessar('nsri')">🚀 Histórico</button>
+                <button onclick="acessarAtual('nsri')">📂 Atuais</button>
+                <button class="secondary" onclick="copiarLinks('nsri')">🔗 Copiar links</button>
+                <button class="danger" onclick="limparCampo('nsri')">Limpar</button>
+            </div>
+            <div class="info" id="info-nsri">Total: 0 código(s)</div>
+        </section>
+
+        <section class="card">
+            <h2>NSPR</h2>
+            <small>Relatório de manutenção</small>
+            <textarea id="nspr" placeholder="Cole os códigos NSPR aqui"></textarea>
+            <div class="btn-row">
+                <button onclick="colar('nspr')">📋 Colar</button>
+                <button class="success" onclick="acessar('nspr')">🚀 Acessar</button>
+                <button class="secondary" onclick="copiarLinks('nspr')">🔗 Copiar links</button>
+                <button class="danger" onclick="limparCampo('nspr')">Limpar</button>
+            </div>
+            <div class="info" id="info-nspr">Total: 0 código(s)</div>
+        </section>
+    </main>
+
+    <section class="panel">
+        <h2>Prévia dos links</h2>
+        <p style="color: var(--muted); margin-top: -6px;">Confira antes de abrir. Os links são atualizados automaticamente enquanto você digita.</p>
+        <div class="preview-list" id="preview"></div>
+    </section>
+
+    <section class="panel">
+        <h2>Histórico recente</h2>
+        <div class="history-list" id="historico"></div>
+    </section>
 </div>
 
-<!-- BLOCO -->
-<div class="container">
-    <h2>NSIS</h2>
-    <textarea id="nsis" rows="4" placeholder="Cole vários códigos aqui"></textarea>
-    <br>
-    <button onclick="colar('nsis')">📋 Colar</button>
-    <button onclick="acessar('nsis','nsis')">Acessar</button>
-    <div class="info" id="info-nsis"></div>
-</div>
-
-<div class="container">
-    <h2>NSRI</h2>
-    <textarea id="nsri" rows="4"></textarea>
-    <br>
-    <button onclick="colar('nsri')">📋 Colar</button>
-    <button onclick="acessar('nsri','nsri')">Acessar</button>
-    <div class="info" id="info-nsri"></div>
-</div>
-
-<div class="container">
-    <h2>NSPR</h2>
-    <textarea id="nspr" rows="4"></textarea>
-    <br>
-    <button onclick="colar('nspr')">📋 Colar</button>
-    <button onclick="acessar('nspr','nspr')">Acessar</button>
-    <div class="info" id="info-nspr"></div>
-</div>
+<div class="toast" id="toast"></div>
 
 <script>
+const CONFIG = {
+    nsis: {
+        nome: "NSIS",
+        url: codigo => "http://192.168.1.110/contratadaweb/consultas/at_servicos/notaservico_detalhe.jsp?Gerencia&NumServ=" + codigo + "&QTE=1"
+    },
+    nsri: {
+        nome: "NSRI",
+        url: codigo => "http://192.168.1.110/contratadaweb/consultas/historico/notaservico_detalhe.jsp?NumServ=" + codigo + "&QTE=1",
+        urlAtual: codigo => "http://192.168.1.110/contratadaweb/consultas/atuais/notaservico_detalhe.jsp?NumServ=" + codigo + "&QTE=1"
+    },
+    nspr: {
+        nome: "NSPR",
+        url: codigo => "http://192.168.1.110/contratadaweb/condis/concod/manutencao/relatorio_nspr.jsp?idnsmanut=" + codigo + "&tipoRel=D"
+    },
 
-// separar lista
+    manobra: {
+        nome: "MANOBRA",
+        url: codigo => "http://192.168.1.110/contratadaweb/solicitacao/imprime_manobra.jsp?NumManob=" + codigo + "&Hist=D"
+    }
+};
+
+const CAMPOS = Object.keys(CONFIG);
+
 function processarLista(valor) {
-    return [...new Set(
-        valor
-        .split(/[\n,; ]+/)
+    const original = valor
+        .split(/[\n,;\t ]+/)
         .map(v => v.trim())
-        .filter(v => v !== "")
-    )];
+        .filter(Boolean);
+
+    const unicos = [...new Set(original)];
+
+    return {
+        original,
+        unicos,
+        duplicados: original.length - unicos.length
+    };
 }
 
-// colar automático
+function obterDadosCampo(id) {
+    const valor = document.getElementById(id).value;
+    return processarLista(valor);
+}
+
+function gerarLinks(id) {
+    const dados = obterDadosCampo(id);
+    return dados.unicos.map(codigo => ({
+        tipo: CONFIG[id].nome,
+        codigo,
+        link: CONFIG[id].url(codigo)
+    }));
+}
+
+function todosOsLinks() {
+    return CAMPOS.flatMap(id => gerarLinks(id));
+}
+
 async function colar(id) {
     try {
         const texto = await navigator.clipboard.readText();
-        document.getElementById(id).value = texto;
-        atualizarInfo(id);
+        const campo = document.getElementById(id);
+        campo.value = texto;
+        atualizarTela();
+        toast("Texto colado em " + CONFIG[id].nome);
     } catch {
-        alert("Não foi possível acessar a área de transferência");
+        alert("Não foi possível acessar a área de transferência. Use Ctrl + V no campo.");
     }
 }
 
-// atualizar contador
-function atualizarInfo(id) {
-    let valor = document.getElementById(id).value;
-    let lista = processarLista(valor);
-    document.getElementById("info-" + id).innerText =
-        "Total: " + lista.length + " código(s)";
-}
+async function copiarLinks(id) {
+    const links = gerarLinks(id).map(item => item.link);
 
-// abrir links
-function acessar(id, tipo) {
-    let valor = document.getElementById(id).value;
-
-    if (valor.trim() === "") {
-        alert("Digite pelo menos um número!");
+    if (!links.length) {
+        alert("Não há códigos para copiar.");
         return;
     }
 
-    let lista = processarLista(valor);
+    try {
+        await navigator.clipboard.writeText(links.join("\n"));
+        toast(links.length + " link(s) copiado(s)");
+    } catch {
+        alert("Não foi possível copiar automaticamente.");
+    }
+}
 
-    lista.forEach(codigo => {
-        let link = "";
+function acessar(id) {
+    const links = gerarLinks(id);
 
-        if (tipo === "nsis") {
-            link = "http://192.168.1.110/contratadaweb/consultas/at_servicos/notaservico_detalhe.jsp?Gerencia&NumServ=" + codigo + "&QTE=1";
-        }
+    if (!links.length) {
+        alert("Digite pelo menos um código em " + CONFIG[id].nome + ".");
+        return;
+    }
 
-        if (tipo === "nsri") {
-            link = "http://192.168.1.110/contratadaweb/consultas/historico/notaservico_detalhe.jsp?NumServ=" + codigo + "&QTE=1";
-        }
+    if (links.length > 10) {
+        const confirmar = confirm("Você está prestes a abrir " + links.length + " abas. Deseja continuar?");
+        if (!confirmar) return;
+    }
 
-        if (tipo === "nspr") {
-            link = "http://192.168.1.110/contratadaweb/condis/concod/manutencao/relatorio_nspr.jsp?idnsmanut=" + codigo + "&tipoRel=D";
-        }
-
-        window.open(link, "_blank");
+    links.forEach((item, index) => {
+        setTimeout(() => {
+            window.open(item.link, "_blank");
+        }, index * 250);
     });
 
-    document.getElementById("info-" + id).innerText =
-        "✔ " + lista.length + " link(s) aberto(s)";
-
+    salvarHistorico(links);
     document.getElementById(id).value = "";
+    atualizarTela();
+    toast(links.length + " link(s) aberto(s)");
 }
 
-// dark mode
-function toggleDark() {
-    document.body.classList.toggle("dark");
+function acessarAtual(id) {
+    if (id !== 'nsri') return;
+
+    const dados = obterDadosCampo(id);
+
+    if (!dados.unicos.length) {
+        alert('Digite pelo menos um código NSRI.');
+        return;
+    }
+
+    if (dados.unicos.length > 10) {
+        const confirmar = confirm('Você está prestes a abrir ' + dados.unicos.length + ' abas. Deseja continuar?');
+        if (!confirmar) return;
+    }
+
+    const links = dados.unicos.map(codigo => ({
+        tipo: 'NSRI ATUAL',
+        codigo,
+        link: CONFIG[id].urlAtual(codigo)
+    }));
+
+    links.forEach((item, index) => {
+        setTimeout(() => {
+            window.open(item.link, '_blank');
+        }, index * 250);
+    });
+
+    salvarHistorico(links);
+    document.getElementById(id).value = '';
+    atualizarTela();
+    toast(links.length + ' link(s) atuais aberto(s)');
 }
 
-// atualizar contador ao digitar
-document.querySelectorAll("textarea").forEach(el => {
-    el.addEventListener("input", () => atualizarInfo(el.id));
+function salvarHistorico(links) {
+    const historico = JSON.parse(localStorage.getItem("historicoNS") || "[]");
+    const agora = new Date().toLocaleString("pt-BR");
+
+    historico.unshift({
+        data: agora,
+        quantidade: links.length,
+        tipos: [...new Set(links.map(l => l.tipo))].join(", "),
+        links
+    });
+
+    localStorage.setItem("historicoNS", JSON.stringify(historico.slice(0, 10)));
+}
+
+function carregarHistorico() {
+    const historico = JSON.parse(localStorage.getItem("historicoNS") || "[]");
+    const area = document.getElementById("historico");
+    const metric = document.getElementById("m-historico");
+
+    metric.innerText = historico.length;
+
+    if (!historico.length) {
+        area.innerHTML = "<div class='info'>Nenhum histórico ainda.</div>";
+        return;
+    }
+
+    area.innerHTML = historico.map((item, index) => `
+        <div class="history-item">
+            <div>
+                <strong>${item.quantidade} link(s)</strong><br>
+                <small style="color: var(--muted);">${item.tipos} • ${item.data}</small>
+            </div>
+            <button class="secondary" onclick="reabrirHistorico(${index})">Reabrir</button>
+        </div>
+    `).join("");
+}
+
+function reabrirHistorico(index) {
+    const historico = JSON.parse(localStorage.getItem("historicoNS") || "[]");
+    const item = historico[index];
+
+    if (!item) return;
+
+    item.links.forEach((link, i) => {
+        setTimeout(() => window.open(link.link, "_blank"), i * 250);
+    });
+
+    toast("Histórico reaberto");
+}
+
+function atualizarInfoCampo(id) {
+    const dados = obterDadosCampo(id);
+    const info = document.getElementById("info-" + id);
+
+    info.innerText = "Total: " + dados.unicos.length + " código(s)" +
+        (dados.duplicados > 0 ? " • " + dados.duplicados + " duplicado(s) removido(s)" : "");
+}
+
+function atualizarMetricas() {
+    let totalOriginal = 0;
+    let totalUnicos = 0;
+    let duplicados = 0;
+
+    CAMPOS.forEach(id => {
+        const dados = obterDadosCampo(id);
+        totalOriginal += dados.original.length;
+        totalUnicos += dados.unicos.length;
+        duplicados += dados.duplicados;
+    });
+
+    document.getElementById("m-total").innerText = totalOriginal;
+    document.getElementById("m-duplicados").innerText = duplicados;
+    document.getElementById("m-links").innerText = totalUnicos;
+}
+
+function atualizarPreview() {
+    const preview = document.getElementById("preview");
+    const links = todosOsLinks();
+
+    if (!links.length) {
+        preview.innerHTML = "<div class='info'>Cole ou digite códigos para visualizar os links.</div>";
+        return;
+    }
+
+    preview.innerHTML = links.map(item => `
+        <div class="preview-item">
+            <span class="badge">${item.tipo}</span>
+            <span class="link-text" title="${item.link}">${item.codigo} — ${item.link}</span>
+            <button class="secondary" onclick="window.open('${item.link}', '_blank')">Abrir</button>
+        </div>
+    `).join("");
+}
+
+function atualizarTela() {
+    CAMPOS.forEach(atualizarInfoCampo);
+    atualizarMetricas();
+    atualizarPreview();
+    carregarHistorico();
+}
+
+function limparCampo(id) {
+    document.getElementById(id).value = "";
+    atualizarTela();
+}
+
+function limparTudo() {
+    CAMPOS.forEach(id => document.getElementById(id).value = "");
+    atualizarTela();
+    toast("Campos limpos");
+}
+
+function alternarTema() {
+    document.body.classList.toggle("light");
+    localStorage.setItem("temaNS", document.body.classList.contains("light") ? "light" : "dark");
+}
+
+function toast(mensagem) {
+    const el = document.getElementById("toast");
+    el.innerText = mensagem;
+    el.classList.add("show");
+    setTimeout(() => el.classList.remove("show"), 2600);
+}
+
+function iniciarTema() {
+    const tema = localStorage.getItem("temaNS");
+    if (tema === "light") document.body.classList.add("light");
+}
+
+CAMPOS.forEach(id => {
+    document.getElementById(id).addEventListener("input", atualizarTela);
 });
 
+iniciarTema();
+atualizarTela();
 </script>
-
 </body>
 </html>
