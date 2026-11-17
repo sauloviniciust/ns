@@ -4,7 +4,6 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>NOTAS DE SERVIÇO</title>
-
 <link rel="icon" type="image/png" href="Imagem1.png" />
 
 <style>
@@ -37,9 +36,7 @@ body.light {
     --input: #f8fafc;
 }
 
-* {
-    box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
     margin: 0;
@@ -94,9 +91,7 @@ body {
     justify-content: flex-end;
 }
 
-button, select, input, textarea {
-    font: inherit;
-}
+button, select, input, textarea { font: inherit; }
 
 button, select {
     border: 0;
@@ -154,9 +149,7 @@ button.success {
     margin-bottom: 6px;
 }
 
-.metric strong {
-    font-size: 28px;
-}
+.metric strong { font-size: 28px; }
 
 .grid {
     display: grid;
@@ -177,9 +170,7 @@ button.success {
     font-size: 24px;
 }
 
-.card small {
-    color: var(--muted);
-}
+.card small { color: var(--muted); }
 
 textarea {
     width: 100%;
@@ -225,9 +216,7 @@ textarea:focus {
     padding: 18px;
 }
 
-.panel h2 {
-    margin-top: 0;
-}
+.panel h2 { margin-top: 0; }
 
 .preview-list {
     display: grid;
@@ -315,33 +304,30 @@ textarea:focus {
         text-align: center;
     }
 
-    .logo {
-        margin: auto;
-    }
+    .logo { margin: auto; }
 
-    .actions-top {
-        justify-content: center;
-    }
+    .actions-top { justify-content: center; }
 
     .grid, .dashboard {
         grid-template-columns: 1fr;
     }
 
-    .preview-item {
-        grid-template-columns: 1fr;
-    }
+    .preview-item { grid-template-columns: 1fr; }
 }
 </style>
 </head>
 
 <body>
 <div class="wrapper">
+
     <header class="header">
         <img class="logo" src="Imagem1.png" alt="Logo" />
+
         <div>
             <h1>NOTAS DE SERVIÇO</h1>
             <p>Acesso rápido para NSIS, NSRI e NSPR com colagem em massa, prévia e histórico.</p>
         </div>
+
         <div class="actions-top">
             <button class="secondary" onclick="alternarTema()">🌙 / ☀️</button>
             <button class="secondary" onclick="limparTudo()">🧹 Limpar tudo</button>
@@ -356,35 +342,45 @@ textarea:focus {
     </section>
 
     <main class="grid">
+
         <section class="card">
             <h2>MANOBRAS</h2>
             <small>Pesquisa de manobras operacionais</small>
+
             <textarea id="manobra" placeholder="Cole os números de manobra aqui"></textarea>
+
             <div class="btn-row">
                 <button onclick="colar('manobra')">📋 Colar</button>
                 <button class="success" onclick="acessar('manobra')">⚡ Abrir</button>
                 <button class="secondary" onclick="copiarLinks('manobra')">🔗 Copiar links</button>
                 <button class="danger" onclick="limparCampo('manobra')">Limpar</button>
             </div>
+
             <div class="info" id="info-manobra">Total: 0 código(s)</div>
         </section>
+
         <section class="card">
             <h2>NSIS</h2>
             <small>Serviços em andamento</small>
+
             <textarea id="nsis" placeholder="Cole os códigos NSIS aqui. Ex: 123456 123457 123458"></textarea>
+
             <div class="btn-row">
                 <button onclick="colar('nsis')">📋 Colar</button>
                 <button class="success" onclick="acessar('nsis')">🚀 Acessar</button>
                 <button class="secondary" onclick="copiarLinks('nsis')">🔗 Copiar links</button>
                 <button class="danger" onclick="limparCampo('nsis')">Limpar</button>
             </div>
+
             <div class="info" id="info-nsis">Total: 0 código(s)</div>
         </section>
 
         <section class="card">
             <h2>NSRI</h2>
             <small>Histórico de notas</small>
+
             <textarea id="nsri" placeholder="Cole os códigos NSRI aqui"></textarea>
+
             <div class="btn-row">
                 <button onclick="colar('nsri')">📋 Colar</button>
                 <button class="success" onclick="acessar('nsri')">🚀 Histórico</button>
@@ -392,26 +388,34 @@ textarea:focus {
                 <button class="secondary" onclick="copiarLinks('nsri')">🔗 Copiar links</button>
                 <button class="danger" onclick="limparCampo('nsri')">Limpar</button>
             </div>
+
             <div class="info" id="info-nsri">Total: 0 código(s)</div>
         </section>
 
         <section class="card">
             <h2>NSPR</h2>
             <small>Relatório de manutenção</small>
+
             <textarea id="nspr" placeholder="Cole os códigos NSPR aqui"></textarea>
+
             <div class="btn-row">
                 <button onclick="colar('nspr')">📋 Colar</button>
                 <button class="success" onclick="acessar('nspr')">🚀 Acessar</button>
+                <button class="secondary" onclick="acessarDetalhadas('nspr')">📄 Detalhadas</button>
                 <button class="secondary" onclick="copiarLinks('nspr')">🔗 Copiar links</button>
                 <button class="danger" onclick="limparCampo('nspr')">Limpar</button>
             </div>
+
             <div class="info" id="info-nspr">Total: 0 código(s)</div>
         </section>
+
     </main>
 
     <section class="panel">
         <h2>Prévia dos links</h2>
-        <p style="color: var(--muted); margin-top: -6px;">Confira antes de abrir. Os links são atualizados automaticamente enquanto você digita.</p>
+        <p style="color: var(--muted); margin-top: -6px;">
+            Confira antes de abrir. Os links são atualizados automaticamente enquanto você digita.
+        </p>
         <div class="preview-list" id="preview"></div>
     </section>
 
@@ -419,33 +423,48 @@ textarea:focus {
         <h2>Histórico recente</h2>
         <div class="history-list" id="historico"></div>
     </section>
+
 </div>
 
 <div class="toast" id="toast"></div>
 
 <script>
 const CONFIG = {
+
     nsis: {
         nome: "NSIS",
-        url: codigo => "http://192.168.1.110/contratadaweb/consultas/at_servicos/notaservico_detalhe.jsp?Gerencia&NumServ=" + codigo + "&QTE=1"
+        url: codigo =>
+            "http://192.168.1.110/contratadaweb/consultas/at_servicos/notaservico_detalhe.jsp?Gerencia&NumServ=" + codigo + "&QTE=1"
     },
+
     nsri: {
         nome: "NSRI",
-        url: codigo => "http://192.168.1.110/contratadaweb/consultas/historico/notaservico_detalhe.jsp?NumServ=" + codigo + "&QTE=1",
-        urlAtual: codigo => "http://192.168.1.110/contratadaweb/consultas/atuais/notaservico_detalhe.jsp?NumServ=" + codigo + "&QTE=1"
+        url: codigo =>
+            "http://192.168.1.110/contratadaweb/consultas/historico/notaservico_detalhe.jsp?NumServ=" + codigo + "&QTE=1",
+
+        urlAtual: codigo =>
+            "http://192.168.1.110/contratadaweb/consultas/atuais/notaservico_detalhe.jsp?NumServ=" + codigo + "&QTE=1"
     },
+
     nspr: {
         nome: "NSPR",
-        url: codigo => "http://192.168.1.110/contratadaweb/condis/concod/manutencao/relatorio_nspr.jsp?idnsmanut=" + codigo + "&tipoRel=D"
+
+        url: codigo =>
+            "http://192.168.1.110/contratadaweb/condis/concod/manutencao/relatorio_nspr.jsp?idnsmanut=" + codigo + "&tipoRel=D",
+
+        urlDetalhe: codigo =>
+            "http://192.168.1.110/contratadaweb/condis/concod/manutencao/andamento_nspr_detalhe.jsp?IdnsManut=" + codigo
     },
 
     manobra: {
         nome: "MANOBRA",
-        url: codigo => "http://192.168.1.110/contratadaweb/solicitacao/imprime_manobra.jsp?NumManob=" + codigo + "&Hist=D"
+        url: codigo =>
+            "http://192.168.1.110/contratadaweb/solicitacao/imprime_manobra.jsp?NumManob=" + codigo + "&Hist=D"
     }
 };
 
 const CAMPOS = Object.keys(CONFIG);
+
 
 function processarLista(valor) {
     const original = valor
@@ -462,13 +481,16 @@ function processarLista(valor) {
     };
 }
 
+
 function obterDadosCampo(id) {
     const valor = document.getElementById(id).value;
     return processarLista(valor);
 }
 
+
 function gerarLinks(id) {
     const dados = obterDadosCampo(id);
+
     return dados.unicos.map(codigo => ({
         tipo: CONFIG[id].nome,
         codigo,
@@ -476,21 +498,28 @@ function gerarLinks(id) {
     }));
 }
 
+
 function todosOsLinks() {
     return CAMPOS.flatMap(id => gerarLinks(id));
 }
+
 
 async function colar(id) {
     try {
         const texto = await navigator.clipboard.readText();
         const campo = document.getElementById(id);
+
         campo.value = texto;
+
         atualizarTela();
+
         toast("Texto colado em " + CONFIG[id].nome);
+
     } catch {
         alert("Não foi possível acessar a área de transferência. Use Ctrl + V no campo.");
     }
 }
+
 
 async function copiarLinks(id) {
     const links = gerarLinks(id).map(item => item.link);
@@ -503,10 +532,12 @@ async function copiarLinks(id) {
     try {
         await navigator.clipboard.writeText(links.join("\n"));
         toast(links.length + " link(s) copiado(s)");
+
     } catch {
         alert("Não foi possível copiar automaticamente.");
     }
 }
+
 
 function acessar(id) {
     const links = gerarLinks(id);
@@ -517,7 +548,10 @@ function acessar(id) {
     }
 
     if (links.length > 10) {
-        const confirmar = confirm("Você está prestes a abrir " + links.length + " abas. Deseja continuar?");
+        const confirmar = confirm(
+            "Você está prestes a abrir " + links.length + " abas. Deseja continuar?"
+        );
+
         if (!confirmar) return;
     }
 
@@ -528,12 +562,64 @@ function acessar(id) {
     });
 
     salvarHistorico(links);
+
     document.getElementById(id).value = "";
+
     atualizarTela();
+
     toast(links.length + " link(s) aberto(s)");
 }
 
+
+/* NOVA FUNÇÃO: ABRIR NSPR DETALHADAS */
+
+function acessarDetalhadas(id) {
+
+    if (id !== 'nspr') return;
+
+    const dados = obterDadosCampo(id);
+
+    if (!dados.unicos.length) {
+        alert('Digite pelo menos um código NSPR.');
+        return;
+    }
+
+    if (dados.unicos.length > 10) {
+        const confirmar = confirm(
+            'Você está prestes a abrir ' +
+            dados.unicos.length +
+            ' abas de NSPR detalhadas. Deseja continuar?'
+        );
+
+        if (!confirmar) return;
+    }
+
+    const links = dados.unicos.map(codigo => ({
+        tipo: 'NSPR DETALHADA',
+        codigo,
+        link: CONFIG[id].urlDetalhe(codigo)
+    }));
+
+    links.forEach((item, index) => {
+        setTimeout(() => {
+            window.open(item.link, '_blank');
+        }, index * 250);
+    });
+
+    salvarHistorico(links);
+
+    document.getElementById(id).value = '';
+
+    atualizarTela();
+
+    toast(links.length + ' NSPR detalhada(s) aberta(s)');
+}
+
+
+/* ABRIR NSRI ATUAIS */
+
 function acessarAtual(id) {
+
     if (id !== 'nsri') return;
 
     const dados = obterDadosCampo(id);
@@ -544,7 +630,12 @@ function acessarAtual(id) {
     }
 
     if (dados.unicos.length > 10) {
-        const confirmar = confirm('Você está prestes a abrir ' + dados.unicos.length + ' abas. Deseja continuar?');
+        const confirmar = confirm(
+            'Você está prestes a abrir ' +
+            dados.unicos.length +
+            ' abas. Deseja continuar?'
+        );
+
         if (!confirmar) return;
     }
 
@@ -561,13 +652,21 @@ function acessarAtual(id) {
     });
 
     salvarHistorico(links);
+
     document.getElementById(id).value = '';
+
     atualizarTela();
+
     toast(links.length + ' link(s) atuais aberto(s)');
 }
 
+
 function salvarHistorico(links) {
-    const historico = JSON.parse(localStorage.getItem("historicoNS") || "[]");
+
+    const historico = JSON.parse(
+        localStorage.getItem("historicoNS") || "[]"
+    );
+
     const agora = new Date().toLocaleString("pt-BR");
 
     historico.unshift({
@@ -577,11 +676,19 @@ function salvarHistorico(links) {
         links
     });
 
-    localStorage.setItem("historicoNS", JSON.stringify(historico.slice(0, 10)));
+    localStorage.setItem(
+        "historicoNS",
+        JSON.stringify(historico.slice(0, 10))
+    );
 }
 
+
 function carregarHistorico() {
-    const historico = JSON.parse(localStorage.getItem("historicoNS") || "[]");
+
+    const historico = JSON.parse(
+        localStorage.getItem("historicoNS") || "[]"
+    );
+
     const area = document.getElementById("historico");
     const metric = document.getElementById("m-historico");
 
@@ -596,44 +703,67 @@ function carregarHistorico() {
         <div class="history-item">
             <div>
                 <strong>${item.quantidade} link(s)</strong><br>
-                <small style="color: var(--muted);">${item.tipos} • ${item.data}</small>
+                <small style="color: var(--muted);">
+                    ${item.tipos} • ${item.data}
+                </small>
             </div>
-            <button class="secondary" onclick="reabrirHistorico(${index})">Reabrir</button>
+
+            <button class="secondary" onclick="reabrirHistorico(${index})">
+                Reabrir
+            </button>
         </div>
     `).join("");
 }
 
+
 function reabrirHistorico(index) {
-    const historico = JSON.parse(localStorage.getItem("historicoNS") || "[]");
+
+    const historico = JSON.parse(
+        localStorage.getItem("historicoNS") || "[]"
+    );
+
     const item = historico[index];
 
     if (!item) return;
 
     item.links.forEach((link, i) => {
-        setTimeout(() => window.open(link.link, "_blank"), i * 250);
+        setTimeout(() => {
+            window.open(link.link, "_blank");
+        }, i * 250);
     });
 
     toast("Histórico reaberto");
 }
 
+
 function atualizarInfoCampo(id) {
+
     const dados = obterDadosCampo(id);
+
     const info = document.getElementById("info-" + id);
 
-    info.innerText = "Total: " + dados.unicos.length + " código(s)" +
-        (dados.duplicados > 0 ? " • " + dados.duplicados + " duplicado(s) removido(s)" : "");
+    info.innerText =
+        "Total: " + dados.unicos.length + " código(s)" +
+        (dados.duplicados > 0
+            ? " • " + dados.duplicados + " duplicado(s) removido(s)"
+            : "");
 }
 
+
 function atualizarMetricas() {
+
     let totalOriginal = 0;
     let totalUnicos = 0;
     let duplicados = 0;
 
     CAMPOS.forEach(id => {
+
         const dados = obterDadosCampo(id);
+
         totalOriginal += dados.original.length;
         totalUnicos += dados.unicos.length;
         duplicados += dados.duplicados;
+
     });
 
     document.getElementById("m-total").innerText = totalOriginal;
@@ -641,65 +771,117 @@ function atualizarMetricas() {
     document.getElementById("m-links").innerText = totalUnicos;
 }
 
+
 function atualizarPreview() {
+
     const preview = document.getElementById("preview");
+
     const links = todosOsLinks();
 
     if (!links.length) {
-        preview.innerHTML = "<div class='info'>Cole ou digite códigos para visualizar os links.</div>";
+        preview.innerHTML =
+            "<div class='info'>Cole ou digite códigos para visualizar os links.</div>";
         return;
     }
 
     preview.innerHTML = links.map(item => `
         <div class="preview-item">
             <span class="badge">${item.tipo}</span>
-            <span class="link-text" title="${item.link}">${item.codigo} — ${item.link}</span>
-            <button class="secondary" onclick="window.open('${item.link}', '_blank')">Abrir</button>
+
+            <span class="link-text" title="${item.link}">
+                ${item.codigo} — ${item.link}
+            </span>
+
+            <button class="secondary"
+                onclick="window.open('${item.link}', '_blank')">
+                Abrir
+            </button>
         </div>
     `).join("");
 }
 
+
 function atualizarTela() {
+
     CAMPOS.forEach(atualizarInfoCampo);
+
     atualizarMetricas();
+
     atualizarPreview();
+
     carregarHistorico();
 }
 
+
 function limparCampo(id) {
+
     document.getElementById(id).value = "";
+
     atualizarTela();
 }
 
+
 function limparTudo() {
-    CAMPOS.forEach(id => document.getElementById(id).value = "");
+
+    CAMPOS.forEach(id => {
+        document.getElementById(id).value = "";
+    });
+
     atualizarTela();
+
     toast("Campos limpos");
 }
 
+
 function alternarTema() {
+
     document.body.classList.toggle("light");
-    localStorage.setItem("temaNS", document.body.classList.contains("light") ? "light" : "dark");
+
+    localStorage.setItem(
+        "temaNS",
+        document.body.classList.contains("light") ? "light" : "dark"
+    );
 }
+
 
 function toast(mensagem) {
+
     const el = document.getElementById("toast");
+
     el.innerText = mensagem;
+
     el.classList.add("show");
-    setTimeout(() => el.classList.remove("show"), 2600);
+
+    setTimeout(() => {
+        el.classList.remove("show");
+    }, 2600);
 }
+
 
 function iniciarTema() {
+
     const tema = localStorage.getItem("temaNS");
-    if (tema === "light") document.body.classList.add("light");
+
+    if (tema === "light") {
+        document.body.classList.add("light");
+    }
 }
 
+
 CAMPOS.forEach(id => {
-    document.getElementById(id).addEventListener("input", atualizarTela);
+
+    document.getElementById(id).addEventListener(
+        "input",
+        atualizarTela
+    );
+
 });
 
+
 iniciarTema();
+
 atualizarTela();
+
 </script>
 </body>
 </html>
